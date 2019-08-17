@@ -66,3 +66,14 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+ ### References
+
+ https://blog.usejournal.com/developing-our-first-pwa-using-react-f75c9e9c9b43
+
+ https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/album
+
+ http://macx.im/react-movie-app/
+
+ ### UI Framework
+
+ Material UI https://material-ui.com/getting-started/installation/
