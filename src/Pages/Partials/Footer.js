@@ -7,13 +7,9 @@ export default function Footer() {
         <Typography variant="body2" color="textSecondary" align="center">
           {'Copyright © '}
           <Link color="inherit" href="https://material-ui.com/">
-            Manju TV
+            React TV
           </Link>{' '}
           {new Date().getFullYear()}
-          {'. Built with '}
-          <Link color="inherit" href="https://material-ui.com/">
-            Material-UI.
-          </Link>
         </Typography>
       );
 }
