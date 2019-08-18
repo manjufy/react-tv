@@ -1,6 +1,7 @@
 import React, { useReducer, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
+import Link from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
@@ -33,15 +34,21 @@ const useStyles = makeStyles(theme => ({
     root: {
       display: 'flex',
       flexWrap: 'wrap',
-      justifyContent: 'space-around',
+      justifyContent: 'flex-start',
       overflow: 'hidden',
       backgroundColor: theme.palette.background.paper,
+      paddingBottom: theme.spacing(8),
+      paddingTop: theme.spacing(4),
+      textAlign: 'left',
     },
     gridList: {
       flexWrap: 'nowrap',
       // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
       transform: 'translateZ(0)',
-      paddingTop: theme.spacing(5),
+      paddingBottom: theme.spacing(4),
+    },
+    girdListHeader: {
+        fontSize: 12,
     },
     title: {
       color: theme.palette.primary.contrastText,
@@ -50,6 +57,7 @@ const useStyles = makeStyles(theme => ({
       background:
         'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
     },
+
   }));
 
 export default function Shows() {
@@ -80,30 +88,37 @@ export default function Shows() {
   return (
     <React.Fragment>
         <div className={classes.root}>
-            { loading && shows.map(show => (  
-                <GridList className={classes.gridList} key={show.row_id} cols={2.5}>
-                    {
-                        show.data.map(title => 
-                                (
-                                    <GridListTile key={getPosterImage(title.images)}>
-                                        <img src={getPosterImage(title.images)} alt={title.title} />
-                                        <GridListTileBar
-                                            title={title.title}
-                                            classes={{
-                                                root: classes.titleBar,
-                                                title: classes.title,
-                                            }}
-                                            actionIcon={
-                                                <IconButton aria-label={`star ${title.title}`}>
-                                                <StarBorderIcon className={classes.title} />
-                                                </IconButton>
-                                            }
-                                        />
-                                    </GridListTile>
-                                )
-                            )
-                    }
-                </GridList> 
+            { loading && shows.map(show => (
+                <React.Fragment key={show.row_id}>
+                    <div style={{ textAlign: 'left' }}>
+                        <h2>{show.row_name}</h2>
+                    </div>
+                    <div>
+                        <GridList className={classes.gridList} key={show.row_id} cols={5}>
+                            {
+                                show.data.map(title => 
+                                        (
+                                            <GridListTile key={title.id}>
+                                                <img src={getPosterImage(title.images)} alt={title.title} />
+                                                <GridListTileBar
+                                                    title={title.title}
+                                                    classes={{
+                                                        root: classes.titleBar,
+                                                        title: classes.title,
+                                                    }}
+                                                    actionIcon={
+                                                        <IconButton aria-label={`star ${title.title}`}>
+                                                        <StarBorderIcon className={classes.title} />
+                                                        </IconButton>
+                                                    }
+                                                />
+                                            </GridListTile>
+                                        )
+                                    )
+                            }
+                        </GridList>
+                    </div>
+                </React.Fragment> 
             ))
             }
         </div>
