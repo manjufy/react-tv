@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
       flexWrap: 'wrap',
       justifyContent: 'flex-start',
       overflow: 'hidden',
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: 'rgb(242, 242, 247)',
       paddingBottom: theme.spacing(8),
       paddingTop: theme.spacing(4),
       textAlign: 'left',
