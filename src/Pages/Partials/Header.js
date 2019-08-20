@@ -17,7 +17,7 @@ export default function Footer() {
           <Toolbar>
             <CameraIcon className={classes.icon} />
             <Typography variant="h6" color="inherit" noWrap>
-              React TV
+              <a href="/" style={{color: 'white', textDecoration: 'none'}}>React TV</a>
             </Typography>
           </Toolbar>
         </AppBar>

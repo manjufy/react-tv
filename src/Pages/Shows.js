@@ -1,7 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
-import Link from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
@@ -61,6 +60,10 @@ const useStyles = makeStyles(theme => ({
   }));
 
 export default function Shows() {
+    const search = window.location.search;
+    const queryStr = new URLSearchParams(search)
+    const page = queryStr.get('page') || 1;
+    const perPage = queryStr.get('perPage') || 20;
     const classes = useStyles();
 
     const getPosterImage = (images) => {
@@ -69,8 +72,7 @@ export default function Shows() {
 
     // State
     const [state, dispatch] = useReducer(reducer, initState);
-    const url = 'https://cdn-discover.hooq.tv/v1.2/discover/feed?region=ID&page=1&perPage=20';
-    const detailPageURL = `https://cdn-discover.hooq.tv/v1.2/discover/titles`
+    const url = `https://cdn-discover.hooq.tv/v1.2/discover/feed?region=ID&page=${page}&perPage=${perPage}`;
     useEffect(() => {
         fetch(url)
             .then(data => data.json())
@@ -84,11 +86,19 @@ export default function Shows() {
             });
     }, []);
 
+    const showDetail = (id) => {
+        window.location = `show/${id}`;
+    };
+
     const { shows, error, loading } = state;
   return (
     <React.Fragment>
         <div className={classes.root}>
-            { loading && shows.map(show => (
+            {
+                !loading && <h5>'....LOADING. PLEASE WAIT FOR A MOMENT'</h5>
+            }
+            { 
+                loading && shows.map(show => (
                 <React.Fragment key={show.row_id}>
                     <div style={{ textAlign: 'left' }}>
                         <h2>{show.row_name}</h2>
@@ -98,7 +108,7 @@ export default function Shows() {
                             {
                                 show.data.map(title => 
                                         (
-                                            <GridListTile key={title.id}>
+                                            <GridListTile key={title.id} onClick={(e) => {showDetail(title.id)}}>
                                                 <img src={getPosterImage(title.images)} alt={title.title} />
                                                 <GridListTileBar
                                                     title={title.title}
