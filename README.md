@@ -17,3 +17,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 As of now pagination is manual
 
 You can navigate to this URL `http://localhost:3000/?page=1&perPage=5` and try to manually change the `page` value to navigate the result set
+
+### Demo
+
+<img src="public/shows.png">
+<img src="public/show.png">
