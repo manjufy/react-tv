@@ -1,8 +1,10 @@
 # React TV
 
-In the project directory, you can run:
+## How to run
 
-### `npm start`
+Node Version: v12.7.0
+
+Navigate to project root directory and run `npm start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
